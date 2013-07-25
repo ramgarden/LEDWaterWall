@@ -1,0 +1,21 @@
+import javax.sound.midi;
+
+public class MIDIPlayer{
+  public static void main(String arg[]){
+
+    Synthesizer synthesizer = MidiSystem.getSynthesizer();
+	synthesizer.open();
+	Instrument[] instrument = synthesizer.getDefaultSoundbank().getInstruments();
+	synthesizer.loadInstrument(instrument[29]);
+	MidiChannel[] channels = synthesizer.getChannels();
+	MidiChannel channel = channels[1];
+	channel.programChange(29);
+	channel.noteOn(noteNumber, 127);
+	Teszthang.sleep(2000);
+	channel.noteOff(noteNumber);
+
+  }
+}
+
+
+
