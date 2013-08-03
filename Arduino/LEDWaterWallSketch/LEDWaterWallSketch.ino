@@ -15,6 +15,7 @@ int AnalogPin3 = 2;
 int AnalogPin4 = 3;
 int AnalogPin5 = 4;
 int AnalogPin6 = 5;
+int SerialBaudRate = 115200;
 int PollingSeconds = 5; //num seconds to wait between checks
 int const TotalBoards = 40; //the total number of LED board modules
 int wetnessValues[TotalBoards]; //all the analog values from each board
@@ -25,7 +26,7 @@ int wetnessValues[TotalBoards]; //all the analog values from each board
 //program for music and other bonus output.
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(SerialBaudRate);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
   }

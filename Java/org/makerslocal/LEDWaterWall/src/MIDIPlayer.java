@@ -75,6 +75,8 @@ public class MIDIPlayer{
 			if( extraBoards > 0)
 			{
 				//then we need to ignore the last set of boards?
+				//or rope the last set of boards into the same channel 
+				// as the last board chunk?
 			}
 		}
 		
@@ -82,15 +84,31 @@ public class MIDIPlayer{
 		System.out.println("num tracks: " + numTracks);
 		System.out.println("board division: " + boardDivision);
 		int valueArrayIndex = 0;
-		for(int mainLoopIndex = 0; mainLoopIndex<30;mainLoopIndex++)
+		
+		//Loop until exit value
+		//for(int mainLoopIndex = 0; mainLoopIndex<30;mainLoopIndex++)
+		//get an instance of the serial port reader class
+		SerialTest serialTest = new SerialTest();
+		boolean readyToExit = false;
+		while(!readyToExit)
 		{		
-			//create a list of 40 random numbers between 0 and 1024.			
-			for(int i=0;i<TOTAL_NUM_BOARDS;i++)
-			{
-				valueArray[i] = generator.nextInt(MAX_WETNESS_VALUE);
+			// //create a list of 40 random numbers between 0 and 1024.			
+			// for(int i=0;i<TOTAL_NUM_BOARDS;i++)
+			// {
+				// valueArray[i] = generator.nextInt(MAX_WETNESS_VALUE);
+			// }
+			
+			//get the string of wetness values from the serial			
+			serialTest.initialize();
+			Thread.sleep(5000); //pause for a few seconds
+			String valueString = serialTest.getSerialLine();
+			String[] valueArrayString = valueString.split(",");
+			for (int i=0; i < valueArrayString.length; i++) {
+				valueArray[i] = Integer.parseInt(valueArrayString[i]);
 			}
 			
-			System.out.println(Arrays.toString(valueArray));			
+			System.out.println(Arrays.toString(valueArray));
+			
 			trackNumber = 0;
 			valueArrayIndex = 0;
 			for (Track track :  tracks) 
@@ -126,9 +144,19 @@ public class MIDIPlayer{
 				}
 			}	
 			
+			//close the port
+			serialTest.close();
 			
-			Thread.sleep(5000); //pause for a few seconds
+			//presetNum = in.nextInt();
+			
+			//if(presetNum == 1)
+			//{
+				//readyToExit = true;	
+			//}
+			
+			//Thread.sleep(5000); //pause for a few seconds
 		}
+		
 		
 		
 		//Loop forever until quit flag is raised.
