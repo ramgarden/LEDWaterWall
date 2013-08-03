@@ -25,10 +25,11 @@ int wetnessValues[TotalBoards]; //all the analog values from each board
 //program for music and other bonus output.
 void setup()
 {
-  Serial.begin(4800);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
   }
+  
   for (int i = 0; i < TotalBoards; i++)
   {
     wetnessValues[i] = 0; 
@@ -42,10 +43,10 @@ void getWetnessValues(int wetnessValues[])
 {
   //loop through each board
   
-    //read analog in for that board
-    //analogRead();
+  //read analog in for that board
+  //analogRead();
   
-    //add that value as a byte to the return array
+  //add that value as a byte to the return array
     
   //end loop
   
@@ -83,9 +84,12 @@ void incrementValues(int wetVals[])
       wetVal = 0; 
     }
     
-    Serial.println("got index: " + index);
-    Serial.println("got increment: " + increment);
-    Serial.println("got wetVal: " + wetVal);
+    //Serial.print("got index: ");
+    //Serial.println(index);
+    //Serial.print("got increment: ");
+    //Serial.println(increment);
+    //Serial.print("got wetVal: ");
+    //Serial.println(wetVal);
     
     //check if that value would go over 1024 if incremented
     wetVal += increment;
@@ -109,12 +113,14 @@ void loop()
   //read the values from the wall
   getWetnessValues(wetnessValues);
 
-  for(int i = 0; i<TotalBoards; i++)
+  //print the values to serial with commas to separate
+  int i = 0;
+  for(i = 0; i < TotalBoards - 1; i++)
   {
-    //Serial.print(wetnessValues[i]);
+    Serial.print(wetnessValues[i]);
+    Serial.print(",");
   }
-  
-  Serial.println("");
+  Serial.println(wetnessValues[i]);
   
   delay(PollingSeconds * 1000); //wait a few seconds.
 }
