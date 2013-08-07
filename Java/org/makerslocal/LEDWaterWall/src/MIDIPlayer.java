@@ -5,8 +5,8 @@ import java.util.*;
 
 public class MIDIPlayer{
   public static void main(String arg[]){
-  	int noteNumber = 0;
-  	int presetNum = 0;
+  	//int noteNumber = 0;
+  	//int presetNum = 0;
 	//the total number of board modules in the LED wall.
 	int TOTAL_NUM_BOARDS = 40; 
 	int MAX_WETNESS_VALUE = 1024;
@@ -26,7 +26,7 @@ public class MIDIPlayer{
 		//}
 		
 		//load a midi file to play.
-		Sequence sequence = MidiSystem.getSequence(new File("test.midi"));
+		Sequence sequence = MidiSystem.getSequence(new File("C:\\Users\\Josh\\Documents\\GitHub\\LEDWaterWall\\Java\\org\\makerslocal\\LEDWaterWall\\src\\test.midi"));
 		
 		// Create a sequencer for the sequence
 		Sequencer sequencer = MidiSystem.getSequencer();
@@ -145,7 +145,7 @@ public class MIDIPlayer{
 			}	
 			
 			//close the port
-			serialTest.close();
+			//serialTest.close();
 			
 			//presetNum = in.nextInt();
 			
@@ -189,7 +189,7 @@ public class MIDIPlayer{
 	}
 	catch (Exception e)
 	{
-		
+            System.out.println(e.toString());
 	}
   }
 }

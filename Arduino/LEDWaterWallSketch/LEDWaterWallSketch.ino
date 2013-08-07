@@ -15,7 +15,7 @@ int AnalogPin3 = 2;
 int AnalogPin4 = 3;
 int AnalogPin5 = 4;
 int AnalogPin6 = 5;
-int SerialBaudRate = 115200;
+int SerialBaudRate = 9600;
 int PollingSeconds = 5; //num seconds to wait between checks
 int const TotalBoards = 40; //the total number of LED board modules
 int wetnessValues[TotalBoards]; //all the analog values from each board
@@ -35,7 +35,7 @@ void setup()
   {
     wetnessValues[i] = 0; 
   }
-  Serial.println("LEDWaterWall arduino serial online and ready.");
+  //Serial.println("LEDWaterWall arduino serial online and ready.");
 }
 
 //gets each wetness value from the analog inputs and returns it

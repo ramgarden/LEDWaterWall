@@ -14,7 +14,7 @@ public class SerialTest implements SerialPortEventListener {
 	private static final String PORT_NAMES[] = { 
 			"/dev/tty.usbserial-A9007UX1", // Mac OS X
 			"/dev/ttyUSB0", // Linux
-			"COM22", // Windows
+			"COM3", // Windows
 	};
 	/**
 	* A BufferedReader which will be fed by a InputStreamReader 
@@ -27,7 +27,7 @@ public class SerialTest implements SerialPortEventListener {
 	/** Milliseconds to block while waiting for port open */
 	private static final int TIME_OUT = 2000;
 	/** Default bits per second for COM port. */
-	private static final int DATA_RATE = 115200;
+	private static final int DATA_RATE = 9600;
 	private String serialLine = "";
 
 	public String getSerialLine() {
@@ -99,7 +99,7 @@ public class SerialTest implements SerialPortEventListener {
 			String inputLine = "";
 			try {
 				inputLine=input.readLine();
-				//System.out.println(inputLine);
+				System.out.println(inputLine);
 				setSerialLine(inputLine);
 			} catch (Exception e) {
 				System.err.println(e.toString());
